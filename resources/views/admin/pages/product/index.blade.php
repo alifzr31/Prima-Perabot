@@ -40,6 +40,7 @@
                             <th>Kategori Produk</th>
                             <th>Harga Produk</th>
                             <th>Diskon</th>
+                            <th>Stok</th>
                             <th class="datatable-nosort">Aktif</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
@@ -56,6 +57,9 @@
                                     {{ $product->discount_percent ? $product->discount_percent . '%' : '-' }}
                                 </td>
                                 <td>
+                                    {{ $product->stock }}
+                                </td>
+                                <td>
                                     @if ($product->is_active)
                                         <i class="icon-copy ion-checkmark-circled" style="color: green;"></i>
                                     @else
@@ -69,11 +73,11 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            {{-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> --}}
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                            <a class="dropdown-item" href="{{ route('dashboard.product.edit', $product) }}">
                                                 <i class="dw dw-edit2"></i> Edit
                                             </a>
-                                            <form action="#" method="POST"
+                                            <form action="{{ route('dashboard.product.destroy', $product) }}" method="POST"
                                                 onsubmit="return confirm('Apakah anda yakin ingin hapus produk {{ $product->name }}?');">
                                                 @csrf
                                                 @method('DELETE')

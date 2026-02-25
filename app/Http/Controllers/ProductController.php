@@ -33,6 +33,7 @@ class ProductController extends Controller
             'sku' => 'nullable|string|max:255',
             'price' => 'required|integer|min:0',
             'discount_percent' => 'nullable|integer|min:0|max:100',
+            'stock' => 'required|integer|min:0',
             'is_active'      => 'nullable|boolean',
             'is_hot_sale' => 'nullable|boolean',
             'is_highlighted' => 'nullable|boolean',
@@ -45,5 +46,43 @@ class ProductController extends Controller
         Product::create($validated);
 
         return redirect()->route('dashboard.product')->with('success', 'Produk berhasil ditambahkan.');
+    }
+
+    public function edit(Product $product)
+    {
+        $brands = Brand::get();
+        $categories = Category::get();
+
+        return view('admin.pages.product.edit', compact('product', 'brands', 'categories'));
+    }
+
+    public function update(Product $product, Request $request)
+    {
+        $validated = $this->validate($request, [
+            'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+            'description' => 'nullable|string',
+            'sku' => 'nullable|string|max:255',
+            'price' => 'required|integer|min:0',
+            'discount_percent' => 'nullable|integer|min:0|max:100',
+            'stock' => 'required|integer|min:0',
+            'is_active'      => 'nullable|boolean',
+            'is_hot_sale' => 'nullable|boolean',
+            'is_highlighted' => 'nullable|boolean',
+            'brand_id' => 'required|exists:brands,id',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $validated['slug'] = Str::slug($validated['name']);
+
+        $product->update($validated);
+
+        return redirect()->route('dashboard.product')->with('success', 'Produk berhasil diperbarui.');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return redirect()->route('dashboard.product')->with('success', 'Produk berhasil dihapus.');
     }
 }
