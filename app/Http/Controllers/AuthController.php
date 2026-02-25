@@ -9,6 +9,10 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard.home');
+        }
+
         return view('auth.login');
     }
 
@@ -25,16 +29,18 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        if ($user->role !== 'superadmin') {
-            return $this->logout();
+        if ($user->role === 'customer') {
+            return $this->logout($request);
         }
 
         return redirect()->route('dashboard.home');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route('login');
     }
