@@ -28,6 +28,7 @@ class Product extends Model
         'sku',
         'price',
         'discount_percent',
+        'stock',
         'is_active',
         'is_hot_sale',
         'is_highlighted',
@@ -41,6 +42,7 @@ class Product extends Model
     protected $casts = [
         'price'            => 'integer',
         'discount_percent' => 'integer',
+        'stock' => 'integer',
         'is_active' => 'boolean',
         'is_hot_sale' => 'boolean',
         'is_highlighted' => 'boolean',
