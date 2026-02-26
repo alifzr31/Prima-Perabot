@@ -73,11 +73,15 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                            <a class="dropdown-item" href="{{ route('dashboard.product.edit', $product) }}">
+                                            <a class="dropdown-item" href="{{ route('dashboard.product.show', $product) }}">
+                                                <i class="dw dw-eye"></i> View
+                                            </a>
+                                            <a class="dropdown-item"
+                                                href="{{ route('dashboard.product.edit', $product) }}">
                                                 <i class="dw dw-edit2"></i> Edit
                                             </a>
-                                            <form action="{{ route('dashboard.product.destroy', $product) }}" method="POST"
+                                            <form action="{{ route('dashboard.product.destroy', $product) }}"
+                                                method="POST"
                                                 onsubmit="return confirm('Apakah anda yakin ingin hapus produk {{ $product->name }}?');">
                                                 @csrf
                                                 @method('DELETE')

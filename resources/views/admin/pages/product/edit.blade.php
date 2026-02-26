@@ -28,6 +28,15 @@
                     <div class="form-control-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group @error('images') has-danger @enderror">
+                <label>Gambar</label>
+                <input type="file" name="images[]" accept=".jpg,.jpeg,.png,.webp" multiple
+                    class="form-control @error('images') form-control-danger @enderror">
+
+                @error('images')
+                    <div class="form-control-feedback">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 @error('sku') has-danger @enderror">
