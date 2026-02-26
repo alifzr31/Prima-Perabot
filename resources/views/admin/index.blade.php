@@ -14,7 +14,7 @@
     @include('admin.sections.sidebar')
 
     <div class="main-container">
-        <div class="pd-ltr-20">
+        <div class="pd-ltr-20 xs-pd-20-10">
             @yield('page-content')
 
             <div class="footer-wrap pd-20 mb-20 card-box">
