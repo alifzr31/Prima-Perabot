@@ -1,7 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="{{ route('dashboard.home') }}">
-            <img src="{{ asset('assets/admin/vendors/images/deskapp-logo-white.svg') }}" alt="" class="light-logo">
+            <img src="{{ asset('assets/global/images/logo.svg') }}" alt="Prima Perabot" width="20%;">
+            Prima Perabot
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -25,9 +26,18 @@
                         <li><a href="{{ route('dashboard.product') }}">Data Produk</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <span class="micon dw dw-invoice"></span><span class="mtext">Data Pembelian</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Data Pesanan</a></li>
+                        <li><a href="#">Data Pembeli</a></li>
+                    </ul>
+                </li>
                 <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-invoice"></span><span class="mtext">Data Pesanan</span>
+                    <a href="{{ route('dashboard.user') }}" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-group"></span><span class="mtext">Data Pengguna</span>
                     </a>
                 </li>
             </ul>
