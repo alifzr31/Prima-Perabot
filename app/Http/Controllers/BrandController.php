@@ -58,17 +58,37 @@ class BrandController extends Controller
             'is_highlighted' => 'nullable|boolean',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
+        $newSlug = Str::slug($validated['name']);
+        $oldSlug = $brand->slug;
+
+        if ($oldSlug !== $newSlug) {
+            $oldFolder = 'brands/' . $oldSlug;
+            $newFolder = 'brands/' . $newSlug;
+
+            if (Storage::disk('public')->exists($oldFolder)) {
+                $files = Storage::disk('public')->allFiles($oldFolder);
+                foreach ($files as $file) {
+                    $newPath = str_replace($oldFolder, $newFolder, $file);
+                    Storage::disk('public')->move($file, $newPath);
+                }
+
+                Storage::disk('public')->deleteDirectory($oldFolder);
+            }
+
+            if ($brand->logo) {
+                $validated['logo'] = str_replace($oldFolder, $newFolder, $brand->logo);
+            }
+        }
+
+        $validated['slug'] = $newSlug;
 
         if ($request->hasFile('logo')) {
             if ($brand->logo && Storage::disk('public')->exists($brand->logo)) {
-                $folderPath = dirname($brand->logo);
-
-                Storage::disk('public')->deleteDirectory($folderPath);
+                Storage::disk('public')->delete($brand->logo);
             }
 
             $validated['logo'] = $request->file('logo')
-                ->store('brands/' . $validated['slug'], 'public');
+                ->store('brands/' . $newSlug, 'public');
         }
 
         $brand->update($validated);
