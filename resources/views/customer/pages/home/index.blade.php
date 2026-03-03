@@ -2241,7 +2241,7 @@
                         {{ $product->formatted_final_price }}
                     </div>
                     <div class="sold-count">
-                        🔥 {{ $product->checkoutItems->count() }} terjual
+                        🔥 {{ $product->checkoutItems->sum('qty') }} terjual
                     </div>
                     <div class="stock-wrapper">
                         <div class="stock-text">
