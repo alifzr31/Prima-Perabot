@@ -49,7 +49,6 @@ class CheckoutController extends Controller
 
                 $orderNumber = 'ORD-' . now()->format('YmdHis') . rand(100, 999);
 
-                // 1️⃣ Buat checkout (total sementara 0)
                 $checkout = Checkout::create([
                     'order_number' => $orderNumber,
                     'orderer_name' => $validated['orderer_name'],
@@ -69,14 +68,12 @@ class CheckoutController extends Controller
                     'grand_total' => 0,
                 ]);
 
-                // 2️⃣ Loop items
                 foreach ($validated['items'] as $item) {
                     $product = Product::lockForUpdate()
                         ->findOrFail($item['product_id']);
 
                     $qty = $item['qty'];
 
-                    // 🔒 Validasi stok
                     if ($product->stock < $qty) {
                         throw new \Exception("Stok produk {$product->name} tidak mencukupi.");
                     }
@@ -93,10 +90,9 @@ class CheckoutController extends Controller
                     $subtotal += $itemSubtotalBeforeDiscount;
                     $totalDiscount += $itemDiscountTotal;
 
-                    // 🔻 Kurangi stok
+                    // INI BUAT PENGURANGAN STOK, HOLD DULU SOALNYA BELUM TAU KAPAN STOK BERKURANG
                     // $product->decrement('stock', $qty);
 
-                    // 💾 Simpan snapshot item
                     CheckoutItem::create([
                         'checkout_id' => $checkout->id,
                         'product_id' => $product->id,
@@ -111,7 +107,6 @@ class CheckoutController extends Controller
 
                 $grandTotal = $subtotal - $totalDiscount;
 
-                // 3️⃣ Update total checkout
                 $checkout->update([
                     'subtotal' => $subtotal,
                     'total_discount_amount' => $totalDiscount,

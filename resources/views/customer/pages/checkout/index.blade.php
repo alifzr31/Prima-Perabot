@@ -737,11 +737,7 @@
                         message +=
                             "*==================================================*";
 
-                        // =============================
-                        // REDIRECT KE WHATSAPP
-                        // =============================
-                        // const whatsappNumber = "6282218688837"; // GANTI NOMOR TOKO
-                        const whatsappNumber = "6281312306787"; // GANTI NOMOR TOKO
+                        const whatsappNumber = "6281312306787";
                         const whatsappUrl =
                             `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
