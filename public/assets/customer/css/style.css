@@ -1,0 +1,1671 @@
+/* =====================
+   GLOBAL
+===================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+html, body{
+  margin:0;
+  padding: 0;
+}
+
+body{
+  background:#f7f9fc;
+  color:#333;
+}
+
+/* =====================
+   HEADER
+===================== */
+.header-adv{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  background:#2f56a6;
+  color:#fff;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:700;
+}
+
+.nav-menu a{
+  margin:0 12px;
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.header-action span{
+  margin-left:15px;
+  cursor:pointer;
+}
+
+/* =====================
+   BANNER
+===================== */
+.hero-banner{
+  position:relative;
+  height:420px;
+  overflow:hidden;
+}
+
+.hero-banner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:white;
+  max-width:600px;
+}
+
+.hero-text h1{
+  font-size:36px;
+  margin-bottom:12px;
+}
+
+/* =====================
+   CATEGORY
+===================== */
+.category-colorful{
+  padding:70px 40px;
+}
+
+.category-colorful h2{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.colorful-wrapper{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:26px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.color-card{
+  position:relative;
+  padding:30px 24px;
+  border-radius:22px;
+  text-decoration:none;
+  color:#fff;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.12);
+  transition:.35s ease;
+}
+
+/* badge */
+.badge{
+  position:absolute;
+  top:18px;
+  right:18px;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
+}
+
+/* icon */
+.color-card .material-icons{
+  font-size:38px;
+  margin-bottom:14px;
+  display:inline-block;
+}
+.color-card .material-symbols-outlined,
+.color-card .material-symbols-rounded{
+  font-size:38px;
+  margin-bottom:14px;
+  display:inline-block;
+}
+
+
+/* text */
+.color-card h3{
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.color-card p{
+  font-size:14px;
+  opacity:.9;
+}
+
+/* hover effect */
+.color-card::before{
+  content:'';
+  position:absolute;
+  width:120px;
+  height:120px;
+  background:rgba(255,255,255,.25);
+  border-radius:50%;
+  top:-60px;
+  right:-60px;
+  opacity:0;
+  transition:.4s ease;
+}
+
+.color-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.15);
+  opacity:0;
+  transition:.35s ease;
+}
+
+.color-card:hover{
+  transform:translateY(-10px) scale(1.04);
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
+}
+
+.color-card:hover::before{
+  opacity:1;
+  transform:scale(2.5);
+}
+
+.color-card:hover::after{
+  opacity:1;
+}
+
+/* animation */
+.color-card{
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp .7s ease forwards;
+}
+
+.color-card:nth-child(1){animation-delay:.1s}
+.color-card:nth-child(2){animation-delay:.2s}
+.color-card:nth-child(3){animation-delay:.3s}
+.color-card:nth-child(4){animation-delay:.4s}
+.color-card:nth-child(5){animation-delay:.5s}
+.color-card:nth-child(6){animation-delay:.6s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* colors */
+.blue{background:linear-gradient(135deg,#2f56a6,#1f2f5c);}
+.yellow{background:linear-gradient(135deg,#ffcc33,#ff9900);}
+.green{background:linear-gradient(135deg,#2ecc71,#1e8449);}
+.purple{background:linear-gradient(135deg,#6a5acd,#483d8b);}
+.orange{background:linear-gradient(135deg,#ff9f43,#e67e22);}
+.red{background:linear-gradient(135deg,#e74c3c,#922b21);}
+
+/* =====================
+   PRODUK TERLARIS
+===================== */
+.produk-terlaris{
+  padding:70px 40px;
+}
+
+.produk-terlaris h2{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.produk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.produk-card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.12);
+  transition:.3s;
+}
+
+.produk-card:hover{
+  transform:translateY(-8px);
+}
+
+.produk-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.produk-info{
+  padding:18px;
+}
+
+.price-normal{
+  text-decoration:line-through;
+  color:#999;
+  font-size:14px;
+}
+
+.price-grosir{
+  color:#e74c3c;
+  font-size:18px;
+  font-weight:700;
+}
+
+.min-beli{
+  font-size:13px;
+  color:#555;
+  margin:6px 0;
+}
+
+.btn-group{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.btn-group button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.btn-beli{
+  background:#2f56a6;
+  color:white;
+}
+
+.btn-detail{
+  background:#eee;
+}
+
+/* =====================
+   POPUP
+===================== */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.popup-content{
+  background:white;
+  width:90%;
+  max-width:900px;
+  border-radius:20px;
+  padding:25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.popup-images img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media(max-width:600px){
+  .colorful-wrapper{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .color-card{
+    min-height:170px;
+    padding:26px 20px;
+  }
+
+  .popup-content{
+    grid-template-columns:1fr;
+  }
+}
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.popup-content{
+  background:#fff;
+  width:90%;
+  max-width:900px;
+  border-radius:20px;
+  padding:25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  position:relative;
+}
+
+.popup-images img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.popup-info h2{
+  margin-bottom:10px;
+}
+
+.popup-info p{
+  margin-bottom:6px;
+}
+
+.close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+@media(max-width:700px){
+  .popup-content{
+    grid-template-columns:1fr;
+  }
+}
+/* SLIDER IMAGE POPUP */
+/* SLIDER IMAGE POPUP */
+.popup-images{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.popup-images img{
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.slide-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.5);
+  color:white;
+  border:none;
+  font-size:26px;
+  padding:6px 12px;
+  cursor:pointer;
+  border-radius:50%;
+}
+
+.slide-btn.prev{left:10px}
+.slide-btn.next{right:10px}
+
+/* =====================
+   HAMBURGER MENU
+===================== */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:25px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:260px;
+  height:100vh;
+  background:#2f56a6;
+  padding:80px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  transition:.3s;
+  z-index:998;
+}
+
+.mobile-menu a{
+  color:white;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:500;
+}
+
+/* ACTIVE */
+.mobile-menu.active{
+  right:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-menu{
+    display:none;
+  }
+  .hamburger{
+    display:flex;
+  }
+}
+/* =====================
+   PRODUK TERLARIS – FEATURED MEDIUM CARDS
+===================== */
+.produk-terlaris{
+  padding:60px 40px;
+  background:linear-gradient(180deg,#f7f9fc,#eef2f8);
+}
+
+.produk-terlaris h2{
+  max-width:1200px;
+  margin:0 auto 28px;
+  font-size:24px;
+}
+
+/* SCROLL HORIZONTAL */
+.produk-grid{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  padding-bottom:14px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD LEBIH GEDE DARI KATEGORI */
+.produk-card{
+  min-width:320px;        /* 🔥 lebih gede dari kategori */
+  max-width:320px;
+  border-radius:18px;
+  box-shadow:0 14px 30px rgba(0,0,0,.15);
+  display:flex;
+  flex-direction:column;
+}
+
+/* GAMBAR */
+.produk-card img{
+  width:100%;
+  height:220px;           /* cocok foto 1:1 */
+  object-fit:cover;
+  border-radius:18px 18px 0 0;
+}
+
+/* INFO */
+.produk-info{
+  padding:16px;
+}
+
+.produk-info h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.price-normal{
+  font-size:13px;
+}
+
+.price-grosir{
+  font-size:18px;
+}
+
+.min-beli{
+  font-size:12px;
+  margin:6px 0;
+}
+
+/* BUTTON */
+.btn-group{
+  gap:10px;
+}
+
+.btn-group button{
+  padding:9px;
+  font-size:13px;
+  border-radius:8px;
+}
+
+/* SCROLL BAR */
+.produk-grid::-webkit-scrollbar{
+  height:7px;
+}
+.produk-grid::-webkit-scrollbar-thumb{
+  background:#bbb;
+  border-radius:10px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .produk-card{
+    min-width:260px;
+  }
+
+  .produk-card img{
+    height:190px;
+  }
+}
+/* =====================
+   HAMBURGER MENU
+===================== */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  margin-left:15px;
+}
+
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+  transition:.3s;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:280px;
+  height:100vh;
+  background:#2f56a6;
+  padding:90px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  transition:.35s ease;
+  z-index:998;
+}
+
+.mobile-menu a{
+  color:white;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:500;
+}
+
+/* ACTIVE */
+.mobile-menu.active{
+  right:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-menu{
+    display:none;
+  }
+  .hamburger{
+    display:flex;
+  }
+}
+/* =====================
+   FIX HEADER LAYER
+===================== */
+.header-adv{
+  position:relative;
+  z-index:1001; /* DI ATAS SEMUA */
+}
+
+/* =====================
+   HAMBURGER
+===================== */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  margin-left:15px;
+  z-index:1002; /* PALING ATAS */
+}
+
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+}
+
+/* =====================
+   MOBILE MENU
+===================== */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:280px;
+  height:100vh;
+  background:#2f56a6;
+  padding:90px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  transition:.35s ease;
+  z-index:1000;
+}
+
+.mobile-menu a{
+  color:white;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:500;
+}
+
+.mobile-menu.active{
+  right:0;
+}
+
+/* =====================
+   OVERLAY BLUR
+===================== */
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+  opacity:0;
+  pointer-events:none; /* ⬅️ KUNCI */
+  transition:.3s;
+  z-index:999;
+}
+
+.menu-overlay.active{
+  opacity:1;
+  pointer-events:auto; /* BARU BISA DIKLIK */
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media(max-width:900px){
+  .nav-menu{
+    display:none;
+  }
+  .hamburger{
+    display:flex;
+  }
+}
+/* =====================
+   THINWALL GRID NORMAL
+===================== */
+.thinwall-page .produk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  overflow:visible;   /* ⬅️ MATIIN SCROLL */
+}
+
+.thinwall-page .produk-card{
+  min-width:auto;
+  max-width:100%;
+}
+
+/* =====================
+   THINWALL – GRID LIST VERTICAL
+===================== */
+
+/* GRID NORMAL (BUKAN SCROLL) */
+#thinwallGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:24px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD */
+#thinwallGrid .produk-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.25s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+#thinwallGrid .produk-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* IMAGE (AMAN UNTUK FOTO 1:1) */
+#thinwallGrid .produk-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+/* INFO */
+#thinwallGrid .produk-info{
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+#thinwallGrid .produk-info h3{
+  font-size:15px;
+  font-weight:600;
+  margin-bottom:8px;
+  line-height:1.3;
+}
+
+/* PRICE */
+#thinwallGrid .price-normal{
+  font-size:13px;
+  color:#999;
+  text-decoration:line-through;
+}
+
+#thinwallGrid .price-grosir{
+  font-size:17px;
+  font-weight:700;
+  color:#e74c3c;
+  margin:2px 0;
+}
+
+#thinwallGrid .min-beli{
+  font-size:12px;
+  color:#555;
+}
+
+/* BUTTON */
+#thinwallGrid .btn-group{
+  margin-top:auto;
+  display:flex;
+  gap:10px;
+}
+
+#thinwallGrid .btn-group button{
+  flex:1;
+  padding:10px;
+  font-size:13px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #thinwallGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  #thinwallGrid{
+    grid-template-columns:1fr;
+  }
+}
+/* =====================
+   BANNER KATEGORI
+===================== */
+.kategori-banner{
+  position:relative;
+  height:260px;
+  overflow:hidden;
+}
+
+.kategori-banner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.kategori-banner-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.2)
+  );
+}
+
+.kategori-banner-text{
+  position:absolute;
+  left:50px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#fff;
+  max-width:520px;
+}
+
+.kategori-banner-text h1{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.kategori-banner-text p{
+  font-size:15px;
+  opacity:.9;
+}
+
+@media(max-width:600px){
+  .kategori-banner{
+    height:200px;
+  }
+  .kategori-banner-text{
+    left:20px;
+  }
+  .kategori-banner-text h1{
+    font-size:24px;
+  }
+}
+/* =====================
+   THINWALL – RAPiH & FOTO 1:1
+===================== */
+
+/* GRID */
+#thinwallGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:28px;                 /* jarak NORMAL & lega */
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD */
+#thinwallGrid .produk-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.1);
+  transition:.25s ease;
+}
+
+#thinwallGrid .produk-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* IMAGE 1:1 (PALING PENTING) */
+#thinwallGrid .produk-card img{
+  width:100%;
+  aspect-ratio:1 / 1;       /* 🔥 PAKSA 1:1 */
+  object-fit:cover;         /* isi penuh tanpa gepeng */
+  background:#f2f2f2;
+}
+
+/* INFO */
+#thinwallGrid .produk-info{
+  padding:16px 16px 18px;
+}
+
+#thinwallGrid .produk-info h3{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.35;
+  margin-bottom:8px;
+}
+
+/* PRICE */
+#thinwallGrid .price-normal{
+  font-size:13px;
+  color:#999;
+  text-decoration:line-through;
+}
+
+#thinwallGrid .price-grosir{
+  font-size:17px;
+  font-weight:700;
+  color:#e74c3c;
+  margin:2px 0;
+}
+
+#thinwallGrid .min-beli{
+  font-size:12px;
+  color:#555;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+#thinwallGrid .btn-group{
+  display:flex;
+  gap:10px;
+}
+
+#thinwallGrid .btn-group button{
+  flex:1;
+  padding:9px;
+  font-size:13px;
+  border-radius:8px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #thinwallGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+  }
+}
+
+@media(max-width:600px){
+  #thinwallGrid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+}
+/* =====================
+   THINWALL – RAPiH & FOTO 1:1
+===================== */
+
+/* GRID */
+#thinwallGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:28px;                 /* jarak NORMAL & lega */
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD */
+#thinwallGrid .produk-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.1);
+  transition:.25s ease;
+}
+
+#thinwallGrid .produk-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* IMAGE 1:1 (PALING PENTING) */
+/* GAMBAR PRODUK GRID – TIDAK DIPOTONG */
+#thinwallGrid .produk-card img{
+  width:100%;
+  aspect-ratio:1 / 1;      /* tetap 1:1 */
+  object-fit:contain;      /* 🔥 PENTING: JANGAN DIPOTONG */
+  background:#fff;         /* latar netral */
+  padding:10px;            /* ruang napas gambar */
+}
+
+/* INFO */
+#thinwallGrid .produk-info{
+  padding:16px 16px 18px;
+}
+
+#thinwallGrid .produk-info h3{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.35;
+  margin-bottom:8px;
+}
+
+/* PRICE */
+#thinwallGrid .price-normal{
+  font-size:13px;
+  color:#999;
+  text-decoration:line-through;
+}
+
+#thinwallGrid .price-grosir{
+  font-size:17px;
+  font-weight:700;
+  color:#e74c3c;
+  margin:2px 0;
+}
+
+#thinwallGrid .min-beli{
+  font-size:12px;
+  color:#555;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+#thinwallGrid .btn-group{
+  display:flex;
+  gap:10px;
+}
+
+#thinwallGrid .btn-group button{
+  flex:1;
+  padding:9px;
+  font-size:13px;
+  border-radius:8px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #thinwallGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+  }
+}
+
+@media(max-width:600px){
+  #thinwallGrid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+}
+/* =====================
+   THINWALL CARD – FOTO & BORDER 1:1
+===================== */
+
+#thinwallGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:34px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD */
+#thinwallGrid .produk-card{
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.1);
+  transition:.25s ease;
+}
+
+#thinwallGrid .produk-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+/* === FOTO WRAPPER (INI KUNCINYA) === */
+#thinwallGrid .produk-card img{
+  width:100%;
+  aspect-ratio:1 / 4;     /* 🔥 CARD FOTO 1:1 */
+  object-fit:contain;     /* gambar UTUH */
+  background:#fff;
+  padding:12px;
+  display:block;
+}
+
+/* INFO */
+#thinwallGrid .produk-info{
+  padding:16px;
+}
+
+#thinwallGrid .produk-info h3{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.35;
+  margin-bottom:8px;
+}
+
+/* PRICE */
+#thinwallGrid .price-normal{
+  font-size:13px;
+  color:#999;
+  text-decoration:line-through;
+}
+
+#thinwallGrid .price-grosir{
+  font-size:17px;
+  font-weight:700;
+  color:#e74c3c;
+  margin:2px 0;
+}
+
+#thinwallGrid .min-beli{
+  font-size:12px;
+  color:#555;
+  margin-bottom:12px;
+}
+
+/* BUTTON */
+#thinwallGrid .btn-group{
+  display:flex;
+  gap:10px;
+}
+
+#thinwallGrid .btn-group button{
+  flex:1;
+  padding:9px;
+  font-size:13px;
+  border-radius:8px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #thinwallGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+  }
+}
+
+@media(max-width:600px){
+  #thinwallGrid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* ================= TERLARIS ================= */
+.terlaris-section{
+  padding:40px 20px;
+  background:#fff;
+}
+
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.section-header h2{
+  font-size:22px;
+  font-weight:600;
+}
+
+.terlaris-wrapper{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding-bottom:10px;
+}
+
+.terlaris-wrapper::-webkit-scrollbar{
+  height:6px;
+}
+.terlaris-wrapper::-webkit-scrollbar-thumb{
+  background:#ccc;
+  border-radius:10px;
+}
+
+.terlaris-card{
+  min-width:220px;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  padding:14px;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.terlaris-card:hover{
+  transform:translateY(-5px);
+}
+
+.terlaris-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.terlaris-name{
+  font-size:14px;
+  font-weight:600;
+  margin-top:10px;
+  min-height:38px;
+}
+
+.terlaris-price{
+  margin-top:6px;
+  font-weight:700;
+  color:#2f56a6;
+}
+
+.badge-terlaris{
+  position:absolute;
+  background:#e74c3c;
+  color:#fff;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:20px;
+  top:10px;
+  left:10px;
+}
+.terlaris-section{
+  padding:50px 20px;
+  background:#f7f9fc;
+  text-align:center;
+}
+
+.section-title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:30px;
+}
+
+.terlaris-wrapper{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.terlaris-card{
+  min-width:250px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  padding:16px;
+  position:relative;
+  transition:.3s;
+}
+
+.terlaris-card:hover{
+  transform:translateY(-6px);
+}
+
+.terlaris-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.badge-terlaris{
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:#e74c3c;
+  color:#fff;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:20px;
+}
+
+.terlaris-name{
+  margin-top:12px;
+  font-size:14px;
+  font-weight:600;
+  min-height:42px;
+}
+
+.terlaris-price{
+  margin-top:8px;
+  font-weight:700;
+  color:#2f56a6;
+}
+
+.btn-beli{
+  margin-top:14px;
+  width:100%;
+  padding:10px;
+  border:none;
+  background:#2ecc71;
+  color:#fff;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.btn-beli:hover{
+  background:#27ae60;
+}
+
+
+/* =====================
+   PROMO BORONG LEBARAN
+===================== */
+.promo-borong-section{
+  padding:60px 20px;
+  background:linear-gradient(135deg,#fff5f5,#ffeaea);
+}
+
+.promo-borong-header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.promo-borong-header h2{
+  font-size:26px;
+  font-weight:700;
+}
+
+.promo-borong-header p{
+  font-size:14px;
+  color:#666;
+}
+
+.promo-borong-wrapper{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  max-width:1200px;
+  margin:0 auto;
+  padding-bottom:10px;
+}
+
+.promo-borong-wrapper::-webkit-scrollbar{
+  height:6px;
+}
+.promo-borong-wrapper::-webkit-scrollbar-thumb{
+  background:#ccc;
+  border-radius:20px;
+}
+
+.promo-card{
+  min-width:240px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  padding:16px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+
+.promo-card:hover{
+  transform:translateY(-6px);
+}
+
+.promo-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:#e74c3c;
+  color:#fff;
+  font-size:11px;
+  padding:5px 10px;
+  border-radius:20px;
+  font-weight:600;
+}
+
+.promo-image{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.promo-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.promo-name{
+  margin-top:12px;
+  font-size:14px;
+  font-weight:600;
+  min-height:40px;
+}
+
+.promo-price{
+  margin-top:8px;
+  font-weight:700;
+  color:#2f56a6;
+}
+
+.promo-discount{
+  font-size:12px;
+  color:#e74c3c;
+  font-weight:600;
+  margin-top:4px;
+}
+
+.promo-btn{
+  margin-top:14px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#e74c3c;   /* merah solid */
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.promo-btn:hover{
+  background:#c0392b;   /* merah lebih gelap saat hover */
+}
+
+.promo-sku{
+  font-size:12px;
+  color:#888;
+  margin-top:4px;
+}
+
+
+/*PERBESAR PROMO*/
+.promo-borong-header{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.promo-borong-header h2{
+  font-size:32px;
+  font-weight:800;
+  color:#c0392b;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+
+.promo-borong-header p{
+  font-size:16px;
+  font-weight:600;
+  color:#444;
+}
+/**/
+.promo-card{
+  background:#fff;
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 20px 45px rgba(255,0,0,.15);
+  transition:.35s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.promo-card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 35px 80px rgba(255,0,0,.35);
+}
+
+/* BADGE 20% */
+.promo-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:linear-gradient(135deg,#ff0000,#ff6a00);
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+  padding:6px 14px;
+  border-radius:30px;
+  animation:pulsePromo 1.2s infinite;
+}
+
+@keyframes pulsePromo{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}
+
+/* HARGA DISKON TEKAN */
+.promo-discount{
+  color:#e74c3c;
+  font-weight:700;
+  font-size:14px;
+  margin-top:6px;
+}
+
+.promo-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 15px 40px rgba(255,0,0,.5);
+}
+
+/* =====================
+  PROMO LEBARAN
+===================== */
+.promo-borong-section{
+  padding:70px 30px;
+  background:linear-gradient(135deg,#ffe9e9,#fff4e6);
+  position:relative;
+  overflow:hidden;
+}
+
+/* efek glow background */
+.promo-borong-section::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(255,0,0,.15),transparent 70%);
+  top:-150px;
+  left:-150px;
+  pointer-events:none;   /* 🔥 TAMBAHKAN INI */
+}
+
+
+.promo-borong-section::after{
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle,rgba(255,140,0,.15),transparent 70%);
+  bottom:-150px;
+  right:-150px;
+  pointer-events:none;   /* 🔥 TAMBAHKAN INI */
+}
+
+/* =====================
+   PROMO BANNER SLIDER SECTION
+===================== */
+
+.promo-slider-section{
+  padding:40px 20px;
+  background:#fff;
+  position:relative;   /* 🔥 TAMBAHKAN INI */
+}
+
+.promo-slider{
+  position:relative;
+  max-width:1200px;
+  margin:auto;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.slider-wrapper{
+  display:flex;
+  transition:transform .6s ease;
+  width:100%;
+  height:420px;
+}
+
+.slide{
+  min-width:100%;
+  height:100%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+
+.slide.active{
+  display:block;
+}
+
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.4);
+  color:#fff;
+  border:none;
+  font-size:28px;
+  padding:8px 14px;
+  cursor:pointer;
+  border-radius:50%;
+  z-index:2;
+}
+
+.slider-btn.prev{ left:15px; }
+.slider-btn.next{ right:15px; }
+
+/*responsif*/
+@media(max-width:768px){
+  .slider-wrapper{
+  width:100%;
+  aspect-ratio: 16 / 5;  /* 🔥 otomatis ikut rasio banner */
+}
+}
+
+/* DOT SLIDER */
+.slider-dots{
+  position:absolute;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+}
+.slider-dots span{
+  width:10px;
+  height:10px;
+  background:#ddd;
+  border-radius:50%;
+  cursor:pointer;
+}
+.slider-dots span.active{
+  background:#e74c3c;
+}
+ 
+/*Smooth Slide*/
+.slide{
+  transition:opacity .6s ease;
+  opacity:0;
+}
+
+.slide.active{
+  opacity:1;
+}

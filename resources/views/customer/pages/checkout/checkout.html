@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Checkout | Prima Perabot</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+            rel="stylesheet"
+        />
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Poppins, sans-serif;
+            }
+            body {
+                background: #f7f9fc;
+                color: #333;
+            }
+
+            header {
+                background: #2f56a6;
+                color: #fff;
+                padding: 18px 30px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .container {
+                max-width: 1100px;
+                margin: 40px auto;
+                background: #fff;
+                padding: 24px;
+                border-radius: 16px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 14px;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+
+            th {
+                background: #f2f4f8;
+                font-size: 14px;
+            }
+
+            td img {
+                width: 70px;
+                border-radius: 8px;
+            }
+
+            .qty-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .qty-box button {
+                width: 28px;
+                height: 28px;
+                border: none;
+                background: #2f56a6;
+                color: #fff;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+            .remove {
+                color: #e74c3c;
+                cursor: pointer;
+                font-weight: 600;
+            }
+
+            .total-box {
+                margin: 20px 0;
+                padding: 16px;
+                background: #f8faff;
+                border-radius: 12px;
+                border: 1px solid #e3e8f5;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .total-box h2 {
+                font-size: 20px;
+            }
+
+            .checkout-btn {
+                background: #2ecc71;
+                color: #fff;
+                padding: 14px 26px;
+                border: none;
+                border-radius: 10px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .checkout-action {
+                margin-top: 24px;
+                padding-top: 16px;
+                border-top: 1px solid #eee;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            /* MOBILE */
+            @media (max-width: 600px) {
+                .checkout-action {
+                    justify-content: stretch;
+                }
+                .checkout-action .checkout-btn {
+                    width: 100%;
+                }
+            }
+
+            /* EMPTY */
+            .empty {
+                text-align: center;
+                padding: 60px;
+                color: #777;
+            }
+
+            /* TOAST */
+            .toast {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: #333;
+                color: #fff;
+                padding: 14px 18px;
+                border-radius: 10px;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: 0.4s;
+            }
+            .toast.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* ===== CHECKOUT MINI NAV ===== */
+            .checkout-nav {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: #fff;
+                padding: 12px 16px;
+                display: flex;
+                gap: 10px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .checkout-nav button {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 14px;
+                border: none;
+                border-radius: 10px;
+                background: #f2f4f8;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: 0.25s;
+            }
+
+            .checkout-nav button:hover {
+                background: #e8ecf6;
+                transform: translateY(-2px);
+            }
+
+            .checkout-nav .material-icons {
+                font-size: 18px;
+                color: #2f56a6;
+            }
+            /* ===== CHECKOUT HEADER ===== */
+            .checkout-header {
+                background: #2f56a6;
+                color: #fff;
+                padding: 16px 28px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            /* LEFT */
+            .checkout-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .checkout-left .material-icons {
+                font-size: 26px;
+            }
+
+            .checkout-left h1 {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            /* RIGHT ACTION */
+            .checkout-right {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .checkout-right button {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 14px;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                background: rgba(255, 255, 255, 0.12);
+                color: #fff;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: 0.25s ease;
+            }
+
+            .checkout-right button .material-icons {
+                font-size: 18px;
+            }
+
+            .checkout-right button:hover {
+                background: rgba(255, 255, 255, 0.25);
+                transform: translateY(-2px);
+            }
+
+            /* MOBILE */
+            @media (max-width: 600px) {
+                .checkout-right button {
+                    padding: 8px;
+                }
+                .checkout-right button span:last-child {
+                    display: none;
+                }
+            }
+
+            /*STYLE DETAIL PEMESAN*/
+            .checkout-section {
+                margin-top: 30px;
+                background: #fafafa;
+                padding: 20px;
+                border-radius: 14px;
+            }
+
+            .checkout-section h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .section-title {
+                font-size: 13px;
+                font-weight: 600;
+                margin: 18px 0 10px;
+                color: #777;
+            }
+
+            .form-group {
+                margin-bottom: 14px;
+            }
+
+            .form-group label {
+                display: block;
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 14px;
+            }
+
+            .form-group small {
+                font-size: 12px;
+                color: #888;
+            }
+            select {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 14px;
+                background: #fff;
+            }
+            /*sampai sini*/
+
+            /* ============================= */
+            /* RESPONSIVE MOBILE CART TABLE */
+            /* ============================= */
+            @media (max-width: 768px) {
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                    width: 100%;
+                }
+
+                thead {
+                    display: none;
+                }
+
+                tr {
+                    margin-bottom: 16px;
+                    border: 1px solid #eee;
+                    border-radius: 12px;
+                    padding: 10px;
+                }
+
+                td {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 6px;
+                    border: none;
+                }
+
+                td::before {
+                    content: attr(data-label);
+                    font-weight: 600;
+                    font-size: 13px;
+                    color: #666;
+                }
+
+                td img {
+                    width: 60px;
+                }
+
+                .qty-box {
+                    justify-content: flex-start;
+                }
+            }
+
+            /* ============================= */
+            /* RESPONSIVE FORM & BUTTON */
+            /* ============================= */
+            @media (max-width: 600px) {
+                .container {
+                    margin: 20px 10px;
+                    padding: 16px;
+                }
+
+                .checkout-section {
+                    padding: 16px;
+                }
+
+                .total-box {
+                    flex-direction: column;
+                    gap: 12px;
+                    align-items: stretch;
+                }
+
+                .checkout-btn {
+                    width: 100%;
+                }
+
+                .checkout-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 10px;
+                }
+
+                .checkout-right {
+                    width: 100%;
+                    justify-content: space-between;
+                }
+            }
+
+            .error-text {
+                color: #e74c3c;
+                font-size: 12px;
+                margin-top: 4px;
+                display: none;
+            }
+            input.error {
+                border-color: #e74c3c;
+            }
+            /* ============================= */
+            /* CART CARD MOBILE IMPROVED */
+            /* ============================= */
+            @media (max-width: 768px) {
+                tbody tr {
+                    background: #fff;
+                    border-radius: 14px;
+                    padding: 14px;
+                    margin-bottom: 14px;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                }
+
+                td {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 8px 4px;
+                    font-size: 14px;
+                }
+
+                td[data-label="Produk"] {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 6px;
+                    font-weight: 600;
+                }
+
+                td[data-label="Produk"] img {
+                    width: 80px;
+                    margin-bottom: 6px;
+                }
+
+                td[data-label="Harga"],
+                td[data-label="Subtotal"] {
+                    font-weight: 600;
+                    color: #2f56a6;
+                }
+
+                .qty-box {
+                    gap: 12px;
+                }
+
+                .qty-box button {
+                    width: 32px;
+                    height: 32px;
+                    font-size: 18px;
+                }
+
+                .remove {
+                    font-size: 20px;
+                    color: #e74c3c;
+                }
+            }
+            .total-box {
+                position: sticky;
+                bottom: 0;
+                background: #f8faff;
+                box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="checkout-header">
+            <div class="checkout-left">
+                <span class="material-icons">shopping_cart</span>
+                <h1>Checkout</h1>
+            </div>
+
+            <div class="checkout-right">
+                <button onclick="goHome()">
+                    <span class="material-icons">home</span>
+                    Home
+                </button>
+
+                <button onclick="goKatalog()">
+                    <span class="material-icons">apps</span>
+                    Katalog
+                </button>
+            </div>
+        </header>
+
+        <div class="container">
+            <table id="cartTable">
+                <thead>
+                    <tr>
+                        <th>Produk</th>
+                        <th>Harga</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th>Hapus</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="empty" id="emptyCart" style="display: none">
+                Keranjang masih kosong
+            </div>
+            <div class="total-box">
+                <div>
+                    <h2>Total: Rp <span id="totalPrice">0</span></h2>
+                    <small
+                        id="diskonNote"
+                        style="color: #27ae60; font-size: 13px; display: none"
+                    >
+                        *Diskon 20% otomatis untuk produk Hampers dengan total
+                        pembelian di atas 10 pcs
+                    </small>
+                </div>
+            </div>
+
+            <form id="checkoutForm" class="checkout-section">
+                <h3>Informasi Pengiriman</h3>
+                <hr />
+
+                <p class="section-title">DATA PEMESAN</p>
+
+                <div class="form-group">
+                    <label>Nama *</label>
+                    <input type="text" id="namaPemesan" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input
+                        type="email"
+                        id="emailPemesan"
+                        placeholder="contoh@email.com"
+                        required
+                    />
+                    <small class="error-text" id="emailError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Handphone *</label>
+                    <input
+                        type="tel"
+                        id="hpPemesan"
+                        placeholder="08xxxxxxxxxx"
+                        inputmode="numeric"
+                        pattern="08[0-9]{8,11}"
+                        required
+                    />
+                    <small class="error-text" id="hpError"></small>
+                </div>
+
+                <p class="section-title">PENGIRIMAN</p>
+
+                <div class="form-group">
+                    <label>Nama Penerima *</label>
+                    <input type="text" id="namaPenerima" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Alamat Lengkap *</label>
+                    <textarea id="alamat" rows="3" required></textarea>
+                    <small
+                        >Pastikan anda memberikan kami alamat yang
+                        lengkap</small
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Negara *</label>
+                    <input type="text" value="Indonesia" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Provinsi *</label>
+                    <select id="provinsi" required>
+                        <option value="">-- Pilih Provinsi --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Kota / Kabupaten *</label>
+                    <select id="kota" required disabled>
+                        <option value="">-- Pilih Kota / Kabupaten --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Kecamatan *</label>
+                    <select id="kecamatan" required disabled>
+                        <option value="">-- Pilih Kecamatan --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Kelurahan / Desa *</label>
+                    <select id="kelurahan" required disabled>
+                        <option value="">-- Pilih Kelurahan / Desa --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kode Pos *</label>
+                    <input
+                        type="text"
+                        id="kodepos"
+                        required
+                        placeholder="Contoh: 40552"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label>Pesan Khusus</label>
+                    <textarea id="catatan" rows="2"></textarea>
+                </div>
+
+                <div class="checkout-action">
+                    <button type="button" class="checkout-btn" id="btnCheckout">
+                        Lanjutkan Checkout
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="toast" id="toast">Produk ditambahkan</div>
+
+        <script>
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const tbody = document.querySelector("#cartTable tbody");
+            const totalPriceEl = document.getElementById("totalPrice");
+            const emptyEl = document.getElementById("emptyCart");
+            const diskonNote = document.getElementById("diskonNote"); // optional kalau ada
+
+            function renderCart() {
+                tbody.innerHTML = "";
+                let total = 0;
+                let adaDiskon = false;
+
+                if (cart.length === 0) {
+                    emptyEl.style.display = "block";
+                    totalPriceEl.innerText = "0";
+                    if (diskonNote) diskonNote.style.display = "none";
+                    return;
+                } else {
+                    emptyEl.style.display = "none";
+                }
+
+                cart.forEach((item, i) => {
+                    let subtotal = item.qty * item.price;
+
+                    const isHampers =
+                        item.name &&
+                        item.name.toLowerCase().includes("hampers");
+
+                    if (isHampers && item.qty >= 11) {
+                        const diskon = Math.round(subtotal * 0.2);
+                        subtotal -= diskon;
+                        adaDiskon = true;
+                    }
+
+                    total += subtotal;
+
+                    tbody.innerHTML += `
+      <tr>
+       <td data-label="Produk">
+  ${item.name}
+  <div style="font-size:12px;color:#777">
+    SKU: ${item.sku}
+  </div>
+</td>
+
+
+        <td data-label="Harga">
+          Rp ${item.price.toLocaleString("id-ID")}
+        </td>
+
+        <td data-label="Qty">
+          <div class="qty-box">
+            <button onclick="changeQty(${i},-1)">−</button>
+            ${item.qty}
+            <button onclick="changeQty(${i},1)">+</button>
+          </div>
+        </td>
+
+        <td data-label="Subtotal">
+          Rp ${subtotal.toLocaleString("id-ID")}
+        </td>
+
+        <td data-label="Hapus" class="remove" onclick="removeItem(${i})">✕</td>
+      </tr>
+    `;
+                });
+
+                // TOTAL REALTIME
+                totalPriceEl.innerText = total.toLocaleString("id-ID");
+
+                // NOTIF DISKON (OPSIONAL)
+                if (diskonNote) {
+                    diskonNote.style.display = adaDiskon ? "block" : "none";
+                }
+            }
+
+            function changeQty(index, delta) {
+                cart[index].qty += delta;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+                save();
+            }
+
+            function removeItem(index) {
+                cart.splice(index, 1);
+                save();
+            }
+
+            function save() {
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCart();
+                updateCartBadge?.();
+            }
+
+            // LOAD AWAL
+            renderCart();
+        </script>
+
+        <script>
+            function goHome() {
+                window.location.href = "../index.html";
+            }
+
+            function goKatalog() {
+                window.location.href = "../pages/katalog.html";
+                // ganti kalau katalog utama beda
+            }
+        </script>
+
+        <script>
+            function scrollToError(element) {
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+                element.focus();
+            }
+
+            document
+                .getElementById("btnCheckout")
+                .addEventListener("click", function () {
+                    const noWA = "6282218688837"; // GANTI NOMOR TOKO
+
+                    if (cart.length === 0) {
+                        alert("Keranjang masih kosong");
+                        return;
+                    }
+
+                    // =============================
+                    // FORMAT TANGGAL
+                    // =============================
+                    const tanggal = new Date().toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                    });
+
+                    // =============================
+                    // AMBIL DATA FORM
+                    // =============================
+                    const namaPemesan =
+                        document.getElementById("namaPemesan").value;
+                    const email = document.getElementById("emailPemesan").value;
+                    const hp = document.getElementById("hpPemesan").value;
+                    const penerima =
+                        document.getElementById("namaPenerima").value;
+                    const alamat = document.getElementById("alamat").value;
+                    const provinsiText = prov.options[prov.selectedIndex].text;
+                    const kotaText = kota.options[kota.selectedIndex].text;
+                    const kecamatanText = kec.options[kec.selectedIndex].text;
+                    const kelurahanText = kel.options[kel.selectedIndex].text;
+                    const kodepos = document.getElementById("kodepos").value;
+                    const catatan = document.getElementById("catatan").value;
+                    // RESET ERROR
+                    document.getElementById("emailError").style.display =
+                        "none";
+                    document.getElementById("hpError").style.display = "none";
+                    document
+                        .getElementById("emailPemesan")
+                        .classList.remove("error");
+                    document
+                        .getElementById("hpPemesan")
+                        .classList.remove("error");
+
+                    // =============================
+                    // VALIDASI EMAIL
+                    // =============================
+                    // VALIDASI EMAIL
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        const emailInput =
+                            document.getElementById("emailPemesan");
+                        const emailError =
+                            document.getElementById("emailError");
+
+                        emailError.innerText =
+                            "Email tidak valid. Contoh: nama@email.com";
+                        emailError.style.display = "block";
+                        emailInput.classList.add("error");
+
+                        scrollToError(emailInput);
+                        return;
+                    }
+
+                    // =============================
+                    // VALIDASI NOMOR HP
+                    // =============================
+                    // VALIDASI NO HP
+                    const hpClean = hp.replace(/[^0-9]/g, "");
+                    if (!/^08\d{8,11}$/.test(hpClean)) {
+                        const hpInput = document.getElementById("hpPemesan");
+                        const hpError = document.getElementById("hpError");
+
+                        hpError.innerText =
+                            "Nomor HP harus format 08xxxxxxxxxx";
+                        hpError.style.display = "block";
+                        hpInput.classList.add("error");
+
+                        scrollToError(hpInput);
+                        return;
+                    }
+
+                    // =============================
+                    // VALIDASI
+                    // =============================
+                    if (
+                        !namaPemesan ||
+                        !email ||
+                        !hp ||
+                        !penerima ||
+                        !alamat ||
+                        !prov.value ||
+                        !kota.value ||
+                        !kec.value ||
+                        !kel.value ||
+                        !document.getElementById("kodepos").value
+                    ) {
+                        alert("Lengkapi data pemesan dan pengiriman");
+                        return;
+                    }
+
+                    // =============================
+                    // SUSUN INVOICE PREMIUM
+                    // =============================
+                    let pesan = "";
+                    pesan +=
+                        "*==================================================*\n";
+                    pesan +=
+                        "                                  *```INVOICE PEMESANAN```*\n";
+                    pesan +=
+                        "                                     *```PRIMA PERABOT```*\n";
+                    pesan +=
+                        "*==================================================*\n";
+                    pesan += `📅Tanggal : ${tanggal}\n`;
+                    pesan += `👤 Pemesan : ${namaPemesan}\n\n`;
+                    pesan += `📞 HP : ${hpClean}\n`;
+                    pesan += `📧 Email : ${email}\n\n`;
+
+                    pesan += "*DETAIL PRODUK*\n";
+                    pesan +=
+                        "--------------------------------------------------\n";
+
+                    let total = 0;
+
+                    cart.forEach((item, index) => {
+                        let subtotal = item.qty * item.price;
+
+                        const isHampers =
+                            item.name &&
+                            item.name.toLowerCase().includes("hampers");
+
+                        if (isHampers && item.qty > 10) {
+                            const diskon = Math.round(subtotal * 0.2);
+                            subtotal -= diskon;
+
+                            pesan += `${index + 1}. ${item.name}\n`;
+                            pesan += `   SKU      : ${item.sku}\n`;
+                            pesan += `   Qty      : ${item.qty}\n`;
+                            pesan += `   Harga    : Rp ${item.price.toLocaleString("id-ID")}\n`;
+                            pesan += `   Diskon   : 20%\n`;
+                            pesan += `   Subtotal : Rp ${subtotal.toLocaleString("id-ID")}\n\n`;
+                        } else {
+                            pesan += `${index + 1}. ${item.name}\n`;
+                            pesan += `   SKU      : ${item.sku}\n`;
+                            pesan += `   Qty      : ${item.qty}\n`;
+                            pesan += `   Harga    : Rp ${item.price.toLocaleString("id-ID")}\n`;
+                            pesan += `   Subtotal : Rp ${subtotal.toLocaleString("id-ID")}\n\n`;
+                        }
+
+                        total += subtotal;
+                    });
+
+                    pesan +=
+                        "--------------------------------------------------\n";
+                    pesan += `*TOTAL : Rp ${total.toLocaleString("id-ID")}*\n\n`;
+
+                    pesan += "🚚 *PENGIRIMAN*\n";
+                    pesan += `Penerima : ${penerima}\n`;
+                    pesan += `Alamat : ${alamat}\n`;
+                    pesan += `Provinsi : ${provinsiText}\n`;
+                    pesan += `Kota : ${kotaText}\n`;
+                    pesan += `Kecamatan : ${kecamatanText}\n`;
+                    pesan += `Kelurahan : ${kelurahanText}\n\n`;
+                    pesan += `Kode Pos : ${kodepos}\n\n`;
+
+                    if (catatan) {
+                        pesan += `📝 Catatan : ${catatan}\n\n`;
+                    }
+                    pesan +=
+                        "*==================================================*\n";
+                    pesan +=
+                        "   *```Terima kasih telah berbelanja di Prima Perabot```*\n";
+                    pesan +=
+                        "*==================================================*";
+
+                    // =============================
+                    // REDIRECT KE WHATSAPP
+                    // =============================
+                    const waURL = `https://wa.me/${noWA}?text=${encodeURIComponent(pesan)}`;
+                    window.open(waURL, "_blank");
+
+                    // =============================
+                    // HAPUS CART SETELAH REDIRECT
+                    // =============================
+                    localStorage.removeItem("cart");
+                    updateCartBadge?.();
+                });
+        </script>
+
+        <script>
+            const API_BASE = "https://www.emsifa.com/api-wilayah-indonesia/api";
+
+            // ELEMENT
+            const prov = document.getElementById("provinsi");
+            const kota = document.getElementById("kota");
+            const kec = document.getElementById("kecamatan");
+            const kel = document.getElementById("kelurahan");
+
+            // =====================
+            // LOAD PROVINSI
+            // =====================
+            fetch(`${API_BASE}/provinces.json`)
+                .then((res) => res.json())
+                .then((data) => {
+                    data.forEach((p) => {
+                        prov.innerHTML += `<option value="${p.id}">${p.name}</option>`;
+                    });
+                });
+
+            // =====================
+            // PROVINSI → KOTA
+            // =====================
+            prov.addEventListener("change", () => {
+                kota.innerHTML =
+                    '<option value="">-- Pilih Kota / Kabupaten --</option>';
+                kec.innerHTML =
+                    '<option value="">-- Pilih Kecamatan --</option>';
+                kel.innerHTML =
+                    '<option value="">-- Pilih Kelurahan / Desa --</option>';
+
+                kota.disabled = true;
+                kec.disabled = true;
+                kel.disabled = true;
+
+                if (!prov.value) return;
+
+                fetch(`${API_BASE}/regencies/${prov.value}.json`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        data.forEach((k) => {
+                            kota.innerHTML += `<option value="${k.id}">${k.name}</option>`;
+                        });
+                        kota.disabled = false;
+                    });
+            });
+
+            // =====================
+            // KOTA → KECAMATAN
+            // =====================
+            kota.addEventListener("change", () => {
+                kec.innerHTML =
+                    '<option value="">-- Pilih Kecamatan --</option>';
+                kel.innerHTML =
+                    '<option value="">-- Pilih Kelurahan / Desa --</option>';
+
+                kec.disabled = true;
+                kel.disabled = true;
+
+                if (!kota.value) return;
+
+                fetch(`${API_BASE}/districts/${kota.value}.json`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        data.forEach((d) => {
+                            kec.innerHTML += `<option value="${d.id}">${d.name}</option>`;
+                        });
+                        kec.disabled = false;
+                    });
+            });
+
+            // =====================
+            // KECAMATAN → KELURAHAN
+            // =====================
+            kec.addEventListener("change", () => {
+                kel.innerHTML =
+                    '<option value="">-- Pilih Kelurahan / Desa --</option>';
+                kel.disabled = true;
+
+                if (!kec.value) return;
+
+                fetch(`${API_BASE}/villages/${kec.value}.json`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        data.forEach((v) => {
+                            kel.innerHTML += `<option value="${v.id}">${v.name}</option>`;
+                        });
+                        kel.disabled = false;
+                    });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script src="../js/include.js"></script>
+    </body>
+</html>

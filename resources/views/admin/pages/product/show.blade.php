@@ -48,7 +48,23 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="product-detail-desc pd-20 card-box height-100-p">
-                            <h4 class="mb-20 pt-20">{{ $product->name }}</h4>
+                            <div class="contact-skill mb-10">
+                                <span
+                                    class="badge badge-pill @if ($product->is_active) badge-success @else badge-secondary @endif">
+                                    @if ($product->is_active)
+                                        Aktif
+                                    @else
+                                        Tidak Aktif
+                                    @endif
+                                </span>
+                                @if ($product->is_highlighted)
+                                    <span class="badge badge-pill badge-info">Disorot</span>
+                                @endif
+                                @if ($product->is_hot_sale)
+                                    <span class="badge badge-pill badge-danger">Hot Sale</span>
+                                @endif
+                            </div>
+                            <h4 class="mb-20">{{ $product->name }}</h4>
                             <p>{{ $product->description }}</p>
                             <div class="price">
                                 SKU : {{ $product->sku ?? '-' }}

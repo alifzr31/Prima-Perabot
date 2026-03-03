@@ -1,0 +1,358 @@
+*, *::before, *::after{
+  box-sizing:border-box;
+}
+
+/* =====================
+   FOOTER INTERAKTIF
+===================== */
+
+#footer-interactive{
+  background:#d6d7da;
+  padding:70px 40px 30px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr 380px; /* 🔥 map kolom tetap */
+  gap:40px;
+  align-items:start; /* 🔥 kunci sejajar atas */
+}
+
+
+.footer-box h3{
+  margin-bottom:15px;
+  font-size:15px;
+  letter-spacing:1px;
+}
+
+.footer-box a{
+  color:#111;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.map-box iframe{
+  width:100%;
+  height:180px;
+  border:none;
+  border-radius:12px;
+}
+
+.map-social{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:16px;
+}
+
+.map-social a{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  color:#fff;
+}
+
+/* COPYRIGHT */
+.main-footer{
+  background:#d6d7da;
+  border-top:1px solid rgba(0,0,0,.1);
+}
+
+.main-footer p{
+  max-width:1200px;
+  margin:0 auto;
+  text-align:center;
+  padding:16px 20px;
+  font-size:13px;
+  color:#333;
+}
+
+
+
+/* RESPONSIVE */
+.map-social a{
+  background:#fff;                 /* netral */
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+/* INSTAGRAM */
+.map-social a.ig{
+  background:radial-gradient(circle at 30% 30%,
+    #feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+  color:#fff;
+}
+/* TIKTOK */
+.map-social a.tt{
+  background:#000;
+  color:#fff;
+}
+/* X / TWITTER */
+.map-social a.x{
+  background:#000;
+  color:#fff;
+}
+/* YOUTUBE */
+.map-social a.yt{
+  background:#ff0000;
+  color:#fff;
+}
+/* FACEBOOK */
+.map-social a.fb{
+  background:#1877f2;
+  color:#fff;
+}
+/* LINKEDIN */
+.map-social a.in{
+  background:#0a66c2;
+  color:#fff;
+}
+/* HOVER */
+.map-social a:hover{
+  transform:translateY(-4px) scale(1.08);
+  box-shadow:0 12px 26px rgba(0,0,0,.25);
+}
+a.mp{
+  font-weight:500;
+}
+
+/* =====================
+   JARAK ICON SOSIAL MEDIA
+===================== */
+.map-social{
+  display:flex;
+  justify-content:center;
+  gap:10px;        /* 🔥 INI YANG NGATUR JARAK */
+  margin-top:16px;
+}
+.map-social a{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  font-size:18px;
+  line-height:1;
+}
+.map-social a i{
+  font-size:16px;        /* pastiin icon konsisten */
+}
+
+
+
+a.tokopedia{ color:#000000; }
+a.blibli{ color:#000000; }
+a.tiktokshop{ color:#000; }
+
+
+
+/* =====================
+   JUDUL MAP
+===================== */
+.map-title{
+  font-size:15px;
+  font-weight:600;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#111;
+}
+/* =====================
+   MAP BOX STYLE (KAYA CARD)
+===================== */
+#footer-interactive .map-box{
+  background:#eeeeee;                 /* warna box */
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+/* JUDUL */
+#footer-interactive .map-title{
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:12px;
+  text-align:center;
+  letter-spacing:.5px;
+}
+
+
+/* INFO TEXT */
+#footer-interactive .map-info{
+  font-size:13px;
+  line-height:1.6;
+  color:#333;
+  text-align:center;
+}
+
+#footer-interactive .map-info .jam{
+  margin-top:10px;
+  font-size:12.5px;
+  color:#444;
+}
+
+/* SOSIAL ICON DI BAWAH */
+#footer-interactive .map-social{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+
+/* =====================
+   MAP RESPONSIVE FIX
+===================== */
+.map-responsive{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%; /* rasio 16:9 */
+  height:0;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.map-responsive iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* HILANGKAN TITIK LIST MARKETPLACE */
+#footer-interactive .footer-box ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+#footer-interactive .footer-box li{
+  margin-bottom:10px;
+}
+/* =====================
+   ANIMASI HOVER FOOTER LINK
+===================== */
+
+/* ITEM (LIST + PARAGRAF) */
+#footer-interactive .footer-box li,
+#footer-interactive .footer-box p{
+  transition:transform .25s ease;
+}
+
+/* LINK */
+#footer-interactive .footer-box a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:
+    color .25s ease,
+    transform .25s ease;
+}
+
+/* ICON */
+#footer-interactive .footer-box i{
+  transition:
+    color .25s ease,
+    transform .25s ease;
+}
+
+/* HOVER EFFECT */
+#footer-interactive .footer-box li:hover,
+#footer-interactive .footer-box p:hover{
+  transform:translateX(6px);
+}
+
+#footer-interactive .footer-box li:hover a,
+#footer-interactive .footer-box p:hover a{
+  color:#2f56a6;
+}
+
+#footer-interactive .footer-box li:hover i,
+#footer-interactive .footer-box p:hover i{
+  transform:scale(1.15);
+  color:#2f56a6;
+}
+
+/* =====================
+   FOOTER ABOUT (SPAN 2 KOLOM)
+===================== */
+.footer-about{
+  grid-column: span 2;   /* 🔥 INI KUNCI */
+}
+
+.footer-about p{
+  font-size:14px;
+  line-height:1.7;
+  color:#333;
+  margin-bottom:10px;
+}
+
+/* =====================
+   TENTANG KAMI AREA MERAH
+===================== */
+.footer-about-wide{
+  grid-column: 1 / 3;          /* 🔥 MELEBAR 2 KOLOM */
+  grid-row: 2;
+  margin-top:20px;
+  max-width:100%;
+}
+
+.footer-about-wide h3{
+  font-size:15px;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+
+.footer-about-wide p{
+  font-size:14px;
+  line-height:1.7;
+  color:#333;
+  max-width:680px;             /* biar teks nyaman dibaca */
+}
+@media(max-width:900px){
+  .footer-about-wide{
+    grid-column: 1 / -1;   /* full width di mobile */
+  }
+}
+.map-box{
+  grid-column: 3;
+  grid-row: 1 / span 2; /* 🔥 MAP NAIK & NEMPEL */
+}
+
+
+@media (max-width:900px){
+  .footer-grid{
+    grid-template-columns:1fr;
+    max-width:100%;
+  }
+}
+
+html, body{
+  overflow-x:hidden;
+}
+
+@media (max-width:900px){
+  .map-box{
+    grid-column: auto;
+    grid-row: auto;
+    width:100%;
+  }
+}
+@media (max-width:480px){
+  .map-responsive{
+    padding-bottom:75%;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+html { scroll-behavior: smooth; }
+
+#tentang-prima {
+  scroll-margin-top: 90px;
+}
